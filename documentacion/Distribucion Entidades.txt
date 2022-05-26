@@ -1,0 +1,28 @@
+PACK1 -- Erick
+
+tb_usuarios
+tb_roles
+tb_personas
+tb_instituciones
+
+
+PACK2 -- Denisse
+
+tb_biblioteca
+tb_suscripciones
+tb_autores
+
+
+PACK3 -- Luis
+
+tb_rating_libros
+tb_libros
+tb_libro_autor
+
+
+PACK4 -- Melany
+
+tb_prestamos
+tb_configuraciones
+tb_libro_categoria
+tb_cateogrias
