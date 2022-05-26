@@ -8,6 +8,7 @@ mvnw
 mvnw.cmd
 !**/src/main/**
 !**/src/test/**
+!**/target/**
 .apt_generated
 .classpath
 .factorypath
