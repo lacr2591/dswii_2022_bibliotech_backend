@@ -38,7 +38,7 @@ public class LibroAutor {
 
 	@ManyToOne
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
-	private Autor idAutorFK;
+	private Autores idAutorFK;
 	
 	@ManyToOne
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
