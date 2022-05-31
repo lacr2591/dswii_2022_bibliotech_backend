@@ -130,16 +130,43 @@ DROP TABLE IF EXISTS `tb_instituciones`;
 CREATE TABLE `tb_instituciones` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(60) NOT NULL,
-  `idUsuarioRepresentanteFK` int DEFAULT NULL,
   `idConfiguracionFK` int NOT NULL,
   `dominioInstitucion` varchar(60) DEFAULT NULL,
   `fecRegistro` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `estado` bit(1) DEFAULT b'1',
   PRIMARY KEY (`id`),
-  KEY `idUsuarioRepresentanteFK` (`idUsuarioRepresentanteFK`),
   KEY `idConfiguracionFK` (`idConfiguracionFK`),
-  CONSTRAINT `tb_instituciones_ibfk_1` FOREIGN KEY (`idUsuarioRepresentanteFK`) REFERENCES `tb_usuarios` (`id`),
-  CONSTRAINT `tb_instituciones_ibfk_2` FOREIGN KEY (`idConfiguracionFK`) REFERENCES `tb_configuraciones` (`id`)
+  CONSTRAINT `tb_instituciones_ibfk_1` FOREIGN KEY (`idConfiguracionFK`) REFERENCES `tb_configuraciones` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_instituciones`
+--
+LOCK TABLES `tb_instituciones` WRITE;
+/*!40000 ALTER TABLE `tb_instituciones` DISABLE KEYS */;
+INSERT INTO `tb_instituciones` VALUES (1,'CIBERTEC',1,'cibertec.edu.pe','2022-03-31 11:24:46',_binary '');
+/*!40000 ALTER TABLE `tb_instituciones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_instituciones`
+--
+
+DROP TABLE IF EXISTS `tb_institucionUsuarioRepresentante`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_institucionUsuarioRepresentante` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idInstitucionFK` int DEFAULT NULL,
+  `idUsuarioRepresentanteFK` int DEFAULT NULL,
+  `fecRegistro` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado` bit(1) DEFAULT b'1',
+  PRIMARY KEY (`id`),
+  KEY `idInstitucionFK` (`idInstitucionFK`),
+   KEY `idUsuarioRepresentanteFK` (`idUsuarioRepresentanteFK`),
+  CONSTRAINT `tb_instUsuarioRepresentante_ibfk_1` FOREIGN KEY (`idInstitucionFK`) REFERENCES `tb_instituciones` (`id`),
+  CONSTRAINT `tb_instUsuarioRepresentante_ibfk_2` FOREIGN KEY (`idUsuarioRepresentanteFK`) REFERENCES `tb_usuarios` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -147,10 +174,10 @@ CREATE TABLE `tb_instituciones` (
 -- Dumping data for table `tb_instituciones`
 --
 
-LOCK TABLES `tb_instituciones` WRITE;
-/*!40000 ALTER TABLE `tb_instituciones` DISABLE KEYS */;
-INSERT INTO `tb_instituciones` VALUES (1,'CIBERTEC',20,1,'cibertec.edu.pe','2022-03-31 11:24:46',_binary '');
-/*!40000 ALTER TABLE `tb_instituciones` ENABLE KEYS */;
+LOCK TABLES `tb_institucionUsuarioRepresentante` WRITE;
+/*!40000 ALTER TABLE `tb_institucionUsuarioRepresentante` DISABLE KEYS */;
+INSERT INTO `tb_institucionUsuarioRepresentante` VALUES (1,1,20,'2022-03-31 11:24:46',_binary '');
+/*!40000 ALTER TABLE `tb_institucionUsuarioRepresentante` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
