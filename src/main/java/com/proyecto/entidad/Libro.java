@@ -51,7 +51,4 @@ public class Libro {
 	private String synopsys;
 	private boolean estado;
 
-	public Libro(int id) {
-		this.id = id;
-	}
 }

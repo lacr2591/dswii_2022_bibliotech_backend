@@ -1,6 +1,5 @@
 package com.proyecto.entidad;
 
-
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -22,7 +21,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @Entity
@@ -34,19 +32,15 @@ public class LibroAutor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 
-	@ManyToOne
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Autores idAutorFK;
-	
-	@ManyToOne
+
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Libro idLibroFK;
-	
 
-	
-	public LibroAutor(int id) {
-		this.id = id;
-	}
 }

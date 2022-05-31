@@ -1,6 +1,5 @@
 package com.proyecto.entidad;
 
-
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -22,7 +21,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @Entity
@@ -34,26 +32,22 @@ public class RatingLibro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 
 	@ManyToOne
+
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Usuario idUsuarioFK;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Libro idLibroFK;
-	
+
 	private String comentario;
-	private int puntuacion;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date fechaComentario;
-	
 
-	
-	public RatingLibro(int id) {
-		this.id = id;
-	}
+	private int puntuacion;
+
 }

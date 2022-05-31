@@ -32,13 +32,11 @@ public class Suscripciones {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	/*
-	 * @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idInstitucionFK")
-	private int idInstitucionFK;
-	*/
+	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	private Instituciones idInstitucionFK;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")

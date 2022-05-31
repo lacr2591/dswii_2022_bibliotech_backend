@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,13 +14,11 @@ import lombok.Setter;
 @Entity
 @Table(name = "tb_configuraciones")
 public class Configuraciones {
-	
-	/* Variables de Configuración */
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private int cantDiasPrestamo;
 
 }

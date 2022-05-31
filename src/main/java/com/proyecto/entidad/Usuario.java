@@ -22,36 +22,41 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "usuario")
+@Table(name = "tb_usuarios")
 public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idUsuario;
-	private String nombres;
-	private String apellidos;
-	private String dni;
-	private String login;
-	private String password;
+	private int id;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-	private Date fechaRegistro;
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 
-	private String direccion;
-	
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" , timezone = "America/Lima")
-	private Date fechaNacimiento;
-	
-	private int estado;
+	@ManyToOne(fetch = FetchType.LAZY)
+
+	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	private Personas idPersonaFK;
+
+	private String emailUsuario;
+	private String passwordUsuario;
 
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idUbigeo")
-	private Ubigeo ubigeo;
+	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	private Roles rolId;
 
-	public String getNombreCompleto() {
-		return nombres.concat(" ").concat(apellidos);
-	}
+	/*
+	 * @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	 * 
+	 * @ManyToOne(fetch = FetchType.LAZY)
+	 * 
+	 * @JoinColumn(name = "id", nullable = false, insertable = false, updatable =
+	 * false) private Instituciones idInstitucionFK;
+	 */
+
+	private boolean estado;
+
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+	private Date fecRegistro;
+
 }

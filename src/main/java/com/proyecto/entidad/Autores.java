@@ -23,7 +23,7 @@ public class Autores {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String descripcion;
-	
+
 	public Autores(int id) {
 		this.id = id;
 	}
