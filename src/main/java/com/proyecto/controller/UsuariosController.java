@@ -58,7 +58,6 @@ public class UsuariosController {
 					estudiante.setApellidoPaterno(usuario.getIdPersonaFK().getApellidoPaterno());
 
 					lstEstudiantes.add(estudiante);
-
 				}
 			}
 
@@ -66,7 +65,7 @@ public class UsuariosController {
 			e.printStackTrace();
 		}
 
-		return ResponseEntity.ok(null);
+		return ResponseEntity.ok(lstEstudiantes);
 	}
 
 }
