@@ -1,0 +1,26 @@
+LUIS -- PACK 0:
+----
+GetCategoriasPrestamos
+GetInteraccionesCategorias
+GetLibrosRank
+Login
+
+getEstudiantes---
+
+MIGRAR PROYECTO A NUEVA VERSION ANGULAR CON FORMATO DE PROFESOR
+
+
+DENISSE -- PACK 1
+getEstudianteById( id: number )
+crearEstudiante(obj: EstudianteDetalle)
+editarEstudiante(objEstudiante: EstudianteDetalle)
+
+ERICK -- PACK 2 
+listarLibros
+listarLibrosGeneral
+detalleLibroId(id: number )
+listarLibrosEstudiante(id: number)
+
+MELANY -- PACK 3
+registrarLibro(objLibro: any)
+actualizarLibroBiblioteca(objLibro: any)
