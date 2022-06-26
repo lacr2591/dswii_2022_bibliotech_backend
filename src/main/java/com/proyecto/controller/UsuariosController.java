@@ -37,6 +37,17 @@ public class UsuariosController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	
+	@GetMapping("/ListarUsuarios")
+	@ResponseBody
+	public ResponseEntity<List<Usuario>> ListarUsuarios() {
+		List<Usuario> lst = usuarioService.ListarUsuariosTodos();
+		
+		
+		
+		return ResponseEntity.ok(lst);
+	}
+	
 	@GetMapping("/ListarEstudiantes")
 	@ResponseBody
 	public ResponseEntity<List<Estudiante>> ListarEstudiantes() {

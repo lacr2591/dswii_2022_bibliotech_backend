@@ -2,6 +2,7 @@ package com.proyecto.entidad;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,8 +27,6 @@ import lombok.Setter;
 @Table(name = "tb_prestamos")
 public class Prestamos {
 
-	/* Variables */
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -36,11 +35,17 @@ public class Prestamos {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Usuario idUsuarioFK;
+	
+	@Column(name="idUsuarioFK")
+	private int idUsuario;
 
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Libro idLibroFK;
+	
+	@Column(name="idLibroFK")
+	private int idLibro;
 
 	private boolean estado;
 

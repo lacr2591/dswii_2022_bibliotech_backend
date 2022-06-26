@@ -38,6 +38,9 @@ public class Instituciones {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Configuraciones idConfiguracionFK;
+	
+	@Column(name="idConfiguracionFK")
+	private int idConfiguracion;
 
 	private String dominioInstitucion;
 

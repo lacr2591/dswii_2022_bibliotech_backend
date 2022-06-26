@@ -9,6 +9,8 @@ import com.proyecto.model.EstudianteDetalle;
 public interface UsuarioService {
 
 	public abstract List<Usuario> ListarUsuarios();
+	
+	public abstract List<Usuario> ListarUsuariosTodos();
 
 	public abstract Usuario ObtenerUsuarioPorID(int id);
 	

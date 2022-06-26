@@ -12,5 +12,6 @@ import com.proyecto.entidad.Usuario;
 public interface InstitucionesRepository extends JpaRepository<Instituciones, Integer> {
 
 	public abstract Instituciones findFirstByDominioInstitucion(String dominioInstitucion);
+	public abstract Instituciones findFirstById(int id);
 
 }

@@ -22,7 +22,7 @@ import com.proyecto.entidad.Biblioteca;
 import com.proyecto.entidad.Usuario;
 import com.proyecto.model.Estudiante;
 import com.proyecto.service.BibliotecaService;
-import com.proyecto.service.BibliotecaServiceImpl;
+
 import com.proyecto.util.AppSettings;
 
 @RestController
@@ -30,8 +30,6 @@ import com.proyecto.util.AppSettings;
 @CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
 
 public class BibliotecaController {
-	
-	@Autowired
-	private BibliotecaService bibliotecaService;
+
 			
 }

@@ -1,5 +1,5 @@
 package com.proyecto.service;
 
-public class BibliotecaService {
+public interface BibliotecaService {
 
 }

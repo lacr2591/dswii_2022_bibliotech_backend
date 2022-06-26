@@ -1,5 +1,5 @@
 package com.proyecto.service;
 
-public interface BibliotecaServicelmpl {
+public class BibliotecaServicelmpl implements BibliotecaService{
 
 }

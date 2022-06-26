@@ -2,6 +2,7 @@ package com.proyecto.entidad;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -37,10 +38,16 @@ public class LibroAutor {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Autores idAutorFK;
+	
+	@Column(name="idAutorFK")
+	private int idAutor;
 
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Libro idLibroFK;
+	
+	@Column(name="idLibroFK")
+	private int idLibro;
 
 }

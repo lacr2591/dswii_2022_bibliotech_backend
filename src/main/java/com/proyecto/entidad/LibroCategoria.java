@@ -1,5 +1,6 @@
 package com.proyecto.entidad;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +32,6 @@ import lombok.Setter;
 @Table(name = "tb_libro_categoria")
 public class LibroCategoria {
 
-	/* Variables de Categorías de Libros */
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,11 +40,17 @@ public class LibroCategoria {
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
-	private Categoria categoria;
+	private Categoria idCategoriaFK;
+	
+	@Column(name="idCategoriaFK")
+	private int idCategoria;
 
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
-	private Libro libro;
+	private Libro idLibroFK;
+	
+	@Column(name="idLibroFK")
+	private int idLibro;
 
 }

@@ -148,4 +148,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return modificaciones;
 	}
 
+	@Override
+	public List<Usuario> ListarUsuariosTodos() {
+		
+		return usuarioRepository.findAll();
+	}
+
 }
