@@ -2,6 +2,7 @@ package com.proyecto.entidad;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,24 +35,20 @@ public class Usuario {
 	@ManyToOne(fetch = FetchType.LAZY)
 
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+
 	private Personas idPersonaFK;
 
+	@Column(name = "idPersonaFK")
+	private int idPersona;
+
 	private String emailUsuario;
+
 	private String passwordUsuario;
 
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
-	private Roles rolId;
+	private int rolId;
 
-	/*
-	 * @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	 * 
-	 * @ManyToOne(fetch = FetchType.LAZY)
-	 * 
-	 * @JoinColumn(name = "id", nullable = false, insertable = false, updatable =
-	 * false) private Instituciones idInstitucionFK;
-	 */
+	@Column(name = "idInstitucionFK")
+	private int idInstitucion;
 
 	private boolean estado;
 

@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.proyecto.entidad.Categoria;
+import com.proyecto.entidad.Instituciones;
 import com.proyecto.entidad.Usuario;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
-	public abstract Usuario findFirstById(int id);
-	
-	
+public interface InstitucionesRepository extends JpaRepository<Instituciones, Integer> {
+
+	public abstract Instituciones findFirstByDominioInstitucion(String dominioInstitucion);
+
 }
