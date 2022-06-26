@@ -36,6 +36,8 @@ public class Usuario {
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Personas idPersonaFK;
 
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Instituciones idInstitucionFK;
 	
