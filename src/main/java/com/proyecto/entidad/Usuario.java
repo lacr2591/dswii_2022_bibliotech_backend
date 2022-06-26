@@ -36,6 +36,9 @@ public class Usuario {
 	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
 	private Personas idPersonaFK;
 
+	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	private Instituciones idInstitucionFK;
+	
 	private String emailUsuario;
 	private String passwordUsuario;
 
