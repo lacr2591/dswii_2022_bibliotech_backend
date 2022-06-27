@@ -9,8 +9,9 @@ import com.proyecto.entidad.RatingLibro;
 
 public interface LibroRatingRepository extends JpaRepository<RatingLibro, Integer> {
 
-	
 	public abstract RatingLibro findFirstById(int id);
+	
+	public abstract List<RatingLibro> findAllByIdLibro(int idLibro);
 	
 }
 	
