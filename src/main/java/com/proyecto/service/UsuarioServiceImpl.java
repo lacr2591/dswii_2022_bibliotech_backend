@@ -1,6 +1,7 @@
 package com.proyecto.service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,7 +52,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 		if (personaRepository.findFirstByDni(estudiante.getNumeroDocumento()) != null) {
 
 			modificaciones = -1;
-
+		
+			
+			
 		} else {
 			Personas objPersonas = new Personas();
 			objPersonas.setId(0);

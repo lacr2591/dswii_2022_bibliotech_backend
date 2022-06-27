@@ -56,13 +56,13 @@ public class RatingLibroController {
 	@ResponseBody
 	public ResponseEntity<Map<String, Object>> ObtenerCategoriaPorId(
 			@RequestParam(name = "id", required = false, defaultValue = "-1") int id) {
-		
+
 		Map<String, Object> salida = new HashMap<>();
-		
+
 		try {
 			RatingLibro obj = libroRatingService.ObtenerRatingsLibroPorID(id);
-			
-			if (obj==null) {
+
+			if (obj == null) {
 				salida.put("mensaje", "No existe datos para mostrar");
 				salida.put("data", null);
 			} else {

@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyecto.entidad.Biblioteca;
 import com.proyecto.entidad.Categoria;
 import com.proyecto.entidad.RatingLibro;
 import com.proyecto.entidad.Usuario;
 import com.proyecto.model.Estudiante;
 import com.proyecto.model.EstudianteDetalle;
+import com.proyecto.repository.BibliotecaRepository;
 import com.proyecto.service.CategoriaService;
 import com.proyecto.service.LibroRatingService;
 import com.proyecto.service.UsuarioService;
@@ -37,17 +39,14 @@ public class UsuariosController {
 	@Autowired
 	private UsuarioService usuarioService;
 
-	
 	@GetMapping("/ListarUsuarios")
 	@ResponseBody
 	public ResponseEntity<List<Usuario>> ListarUsuarios() {
 		List<Usuario> lst = usuarioService.ListarUsuariosTodos();
-		
-		
-		
+
 		return ResponseEntity.ok(lst);
 	}
-	
+
 	@GetMapping("/ListarEstudiantes")
 	@ResponseBody
 	public ResponseEntity<List<Estudiante>> ListarEstudiantes() {
@@ -115,29 +114,29 @@ public class UsuariosController {
 	public ResponseEntity<Integer> AgregarEstudiante(@RequestBody EstudianteDetalle nuevoEstudiante) {
 		int modificaciones = 0;
 		try {
-			
-		modificaciones = usuarioService.CrearEstudiante(nuevoEstudiante);
-						
+
+			modificaciones = usuarioService.CrearEstudiante(nuevoEstudiante);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return ResponseEntity.ok(modificaciones);
 	}
-	
+
 	@PutMapping("/EditarEstudiante")
 	@ResponseBody
 	public ResponseEntity<Integer> EditarEstudiante(@RequestBody EstudianteDetalle nuevoEstudiante) {
 		int modificaciones = 0;
 		try {
-			
-		modificaciones = usuarioService.EditarEstudiante(nuevoEstudiante);
-						
+
+			modificaciones = usuarioService.EditarEstudiante(nuevoEstudiante);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return ResponseEntity.ok(modificaciones);
 	}
-	
+
 }

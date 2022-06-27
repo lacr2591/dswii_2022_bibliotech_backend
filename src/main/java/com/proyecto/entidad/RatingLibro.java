@@ -36,7 +36,7 @@ public class RatingLibro {
 
 	
 	@ManyToOne
-	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "idUsuarioFK", nullable = false, insertable = false, updatable = false)
 	private Usuario idUsuarioFK;
 	
 	@Column(name="idUsuarioFK")
@@ -44,7 +44,7 @@ public class RatingLibro {
 	
 
 	@ManyToOne
-	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "idLibroFK", nullable = false, insertable = false, updatable = false)
 	private Libro idLibroFK;
 	
 	@Column(name="idLibroFK")

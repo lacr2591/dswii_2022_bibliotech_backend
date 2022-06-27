@@ -35,7 +35,7 @@ public class InstitucionUsuarioRepresentante {
 
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "idInstitucionFK", nullable = false, insertable = false, updatable = false)
 	private Instituciones idInstitucionFK;
 	
 	@Column(name="idInstitucionFK")
@@ -43,7 +43,7 @@ public class InstitucionUsuarioRepresentante {
 
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "idUsuarioRepresentanteFK", nullable = false, insertable = false, updatable = false)
 	private Usuario idUsuarioRepresentanteFK;
 	
 	@Column(name="idUsuarioRepresentanteFK")

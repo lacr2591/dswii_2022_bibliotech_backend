@@ -46,9 +46,9 @@ public class Usuario {
 
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
-	private Personas idInstitucionFK;
-	
+	@JoinColumn(name = "idInstitucionFK", nullable = false, insertable = false, updatable = false)
+	private Instituciones idInstitucionFK;
+
 	@Column(name = "idInstitucionFK")
 	private int idInstitucion;
 
@@ -57,6 +57,5 @@ public class Usuario {
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date fecRegistro;
-
 
 }

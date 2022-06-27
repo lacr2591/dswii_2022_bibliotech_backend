@@ -36,7 +36,7 @@ public class Suscripciones {
 
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "idInstitucionFK", nullable = false, insertable = false, updatable = false)
 	private Instituciones idInstitucionFK;
 	
 	@Column(name="idInstitucionFK")

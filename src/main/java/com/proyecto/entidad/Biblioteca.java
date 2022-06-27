@@ -30,7 +30,7 @@ public class Biblioteca {
 	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "idInstitucionFK", nullable = false, insertable = false, updatable = false)
 	private Instituciones idInstitucionFK;
 	
 	@Column(name="idInstitucionFK")
@@ -38,7 +38,7 @@ public class Biblioteca {
 	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "idLibroFK", nullable = false, insertable = false, updatable = false)
 	private Libro idLibroFK;
 	
 	@Column(name="idLibroFK")
