@@ -47,7 +47,7 @@ public class Prestamos {
 	@Column(name="idLibroFK")
 	private int idLibro;
 
-	private boolean estado;
+	private char estado;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
