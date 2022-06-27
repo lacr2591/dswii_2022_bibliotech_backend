@@ -13,6 +13,6 @@ public interface BibliotecaRepository extends JpaRepository<Biblioteca, Integer>
 	
 	public abstract List <Biblioteca> findByIdInstitucionAndEstado(int idInstitucion,boolean estado );
 	
-	public abstract List <Biblioteca> findById(int id );
+	public abstract List <Biblioteca> findAllByIdLibro(int idLibro );
 	
 }

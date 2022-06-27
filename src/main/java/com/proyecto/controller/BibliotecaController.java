@@ -48,18 +48,16 @@ public class BibliotecaController {
 		return ResponseEntity.ok(bibliotecaService.ListarLibro(email));
 	}
 	
-	//DEBE DEVOLVER NULO 
 	@GetMapping("/ListarLibrosGeneral")
 	@ResponseBody
 	public ResponseEntity<List<LibroModel>> ListarLibrosGeneral(@RequestParam   String email ) {
 		return ResponseEntity.ok(bibliotecaService.ListarLibroGeneral(email));
 	}	
 	
-	//NO FUNCIONA BIEN
-	@GetMapping("/ListarLibrosDetalle")
+	@GetMapping("/DetalleLibro")
 	@ResponseBody
-	public ResponseEntity<List<LibroModel>> ListarLibrosDetalle(@RequestParam   int id  ) {
-		return ResponseEntity.ok(bibliotecaService.ListarLibroDetalle(id));
+	public ResponseEntity<List<LibroModel>> DetalleLibro(@RequestParam   int id  ) {
+		return ResponseEntity.ok(bibliotecaService.DetalleLibro(id));
 	}	
 	
 	

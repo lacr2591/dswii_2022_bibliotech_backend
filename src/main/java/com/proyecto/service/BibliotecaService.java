@@ -10,5 +10,5 @@ public interface BibliotecaService {
 	
 	public abstract List<LibroModel> ListarLibroGeneral(String email);
 	
-	public abstract List<LibroModel> ListarLibroDetalle(int id);
+	public abstract List<LibroModel> DetalleLibro(int id);
 }

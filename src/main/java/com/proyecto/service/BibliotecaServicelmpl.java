@@ -1,5 +1,6 @@
 package com.proyecto.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,49 +136,69 @@ public class BibliotecaServicelmpl implements BibliotecaService {
 	}
 
 	@Override
-	public List<LibroModel> ListarLibroDetalle(int id) {
+	public List<LibroModel> DetalleLibro(int id) {
 
 		List<LibroModel> lstLibros = new ArrayList<LibroModel>();
 
-		List<Biblioteca> objBiblioteca = bibliotecaRep.findById(id);
+		List<Biblioteca> objBiblioteca = bibliotecaRep.findAllByIdLibro(id);
 
-		LibroModel objLibroModel;
+		if (objBiblioteca != null && objBiblioteca.size() > 0) {
 
-		for (Biblioteca biblioteca : objBiblioteca) {
-			objLibroModel = new LibroModel();
+			LibroModel objLibroModel;
+			RatingModel objRatingModel;
 
-			List<RatingLibro> lstRatingLibro = ratingRep.findAllByIdLibro(biblioteca.getIdLibro());
-			double promedio = 0;
-			int cantidadrating = 0;
+			for (Biblioteca biblioteca : objBiblioteca) {
+				objLibroModel = new LibroModel();
 
-			for (RatingLibro rating : lstRatingLibro) {
-				promedio = promedio + rating.getPuntuacion();
-				cantidadrating++;
+				List<RatingLibro> lstRatingLibro = ratingRep.findAllByIdLibro(biblioteca.getIdLibro());
+				double promedio = 0;
+				int cantidadrating = 0;
+				
+				objLibroModel.setRatings(new ArrayList<RatingModel>());
+						
+				for (RatingLibro rating : lstRatingLibro) {
+					promedio = promedio + rating.getPuntuacion();
+					cantidadrating++;
+					SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+					
+					objRatingModel=new RatingModel();
+					
+					objRatingModel.setComentario(rating.getComentario());
+					objRatingModel.setFechaComentario(formato.format(rating.getFechaComentario()));
+					objRatingModel.setPuntuacion(rating.getPuntuacion());
+					
+					
+					objLibroModel.getRatings().add(objRatingModel);		
+				}
+				if (promedio != 0) {
+					promedio = promedio / cantidadrating;
+				}
+
+				objLibroModel.setId_Libro(biblioteca.getIdLibroFK().getId());
+				objLibroModel.setCoverLink(biblioteca.getIdLibroFK().getCoverLink());
+
+				objLibroModel.setEdition(biblioteca.getIdLibroFK().getEdition());
+				objLibroModel.setLanguage(biblioteca.getIdLibroFK().getLanguage());
+				objLibroModel.setPages(biblioteca.getIdLibroFK().getPages());
+				objLibroModel.setStockDisponible(biblioteca.getStockDisponible());
+				objLibroModel.setSynopsys(biblioteca.getIdLibroFK().getSynopsys());
+				objLibroModel.setTitle(biblioteca.getIdLibroFK().getTitle());
+				objLibroModel.setTitle_Long(biblioteca.getIdLibroFK().getTitle_long());
+
+				objLibroModel.setPuntuacion((promedio));
+
+				List<LibroCategoria> lstCategorias = categoriaRep.findAllByIdLibro(biblioteca.getIdLibro());
+				String categorias = "";
+				for (LibroCategoria categoria : lstCategorias) {
+					categorias = categorias + categoria.getIdCategoriaFK().getDescripcion() + " ";
+				}
+
+				objLibroModel.setCategorias(categorias);
+
+				lstLibros.add(objLibroModel);
 			}
-			promedio = promedio / cantidadrating;
-
-			objLibroModel.setId_Libro(biblioteca.getIdLibroFK().getId());
-			objLibroModel.setCoverLink(biblioteca.getIdLibroFK().getCoverLink());
-
-			objLibroModel.setEdition(biblioteca.getIdLibroFK().getEdition());
-			objLibroModel.setLanguage(biblioteca.getIdLibroFK().getLanguage());
-			objLibroModel.setPages(biblioteca.getIdLibroFK().getPages());
-			objLibroModel.setStockDisponible(biblioteca.getStockDisponible());
-			objLibroModel.setSynopsys(biblioteca.getIdLibroFK().getSynopsys());
-			objLibroModel.setTitle(biblioteca.getIdLibroFK().getTitle());
-			objLibroModel.setTitle_Long(biblioteca.getIdLibroFK().getTitle_long());
-
-			objLibroModel.setPuntuacion((promedio));
-
-			List<LibroCategoria> lstCategorias = categoriaRep.findAllByIdLibro(biblioteca.getIdLibro());
-			String categorias = "";
-			for (LibroCategoria categoria : lstCategorias) {
-				categorias = categorias + categoria.getIdCategoriaFK().getDescripcion() + " ";
-			}
-
-			objLibroModel.setCategorias(categorias);
-
-			lstLibros.add(objLibroModel);
+		} else {
+			lstLibros = null;
 		}
 		return lstLibros;
 	}
