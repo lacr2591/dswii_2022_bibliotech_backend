@@ -54,26 +54,31 @@ public class LibroServiceImpl implements LibroService {
 	public boolean registrarLibro(LibroBiblioteca libroBibl) {
 
 		boolean registrado = false;
-		Biblioteca obj = new Biblioteca();
+		Biblioteca objBiblioteca = null;
 		Usuario objUsuario = repoUsuario.findFirstByEmailUsuario(libroBibl.getEmail());
 
 		if (objUsuario != null && objUsuario.getIdInstitucion() > 0) {
 			int idInstitucion = objUsuario.getIdInstitucion();
-			Instituciones objInstitucion = new Instituciones();
-			objInstitucion.setId(idInstitucion);
 
 			Libro objLibro = repoLibro.findFirstById(libroBibl.getIdLibro());
 
 			if (objLibro != null && objLibro.getTitle() != null) {
 
-				obj.setId(0);
-				obj.setEstado(true);
-				obj.setStockDisponible(libroBibl.getCantidad());
-				obj.setIdLibro(objLibro.getId());
-				obj.setIdInstitucion(idInstitucion);
-				obj.setIdLibroFK(objLibro);
+				objBiblioteca = repoBiblioteca.findFirstByIdLibro(objLibro.getId());
 
-				registrado = repoBiblioteca.save(obj).getId() != 0 ? true : false;
+				if (objBiblioteca == null) {
+					objBiblioteca = new Biblioteca();
+
+					objBiblioteca.setId(0);
+				}
+
+				objBiblioteca.setEstado(true);
+				objBiblioteca.setStockDisponible(libroBibl.getCantidad());
+				objBiblioteca.setIdLibro(objLibro.getId());
+				objBiblioteca.setIdInstitucion(idInstitucion);
+				objBiblioteca.setIdLibroFK(objLibro);
+
+				registrado = repoBiblioteca.save(objBiblioteca).getId() != 0 ? true : false;
 			}
 		}
 
@@ -85,13 +90,11 @@ public class LibroServiceImpl implements LibroService {
 	public boolean actualizarLibro(LibroBiblioteca libroBibl) {
 
 		boolean actualizado = false;
-		Biblioteca obj = repoBiblioteca.findFirstById(libroBibl.getIdLibro());
+		Biblioteca obj = repoBiblioteca.findFirstByIdLibro(libroBibl.getIdLibro());
 		Usuario objUsuario = repoUsuario.findFirstByEmailUsuario(libroBibl.getEmail());
 
 		if (objUsuario != null && objUsuario.getIdInstitucion() > 0) {
 			int idInstitucion = objUsuario.getIdInstitucion();
-			Instituciones objInstitucion = new Instituciones();
-			objInstitucion.setId(idInstitucion);
 
 			Libro objLibro = repoLibro.findFirstById(libroBibl.getIdLibro());
 
@@ -110,6 +113,15 @@ public class LibroServiceImpl implements LibroService {
 
 				actualizado = repoBiblioteca.save(obj).getId() != 0 ? true : false;
 			}
+		} else {
+			System.out.println("=====> NO ENTRO");
+			System.out.println("=====> NO ENTRO");
+			System.out.println("=====> NO ENTRO");
+			System.out.println("=====> NO ENTRO");
+			System.out.println("=====> NO ENTRO");
+			System.out.println("=====> NO ENTRO");
+			System.out.println("=====> NO ENTRO");
+			System.out.println("=====> NO ENTRO");
 		}
 		return actualizado;
 	}

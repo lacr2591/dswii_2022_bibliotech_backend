@@ -46,6 +46,26 @@ public class UsuariosController {
 
 		return ResponseEntity.ok(lst);
 	}
+	
+	@GetMapping("/LoginRepresentante")
+	@ResponseBody
+	public ResponseEntity<Boolean> LoginRepresentante (String email, String password) {
+		boolean logueado=false;
+		
+		logueado = usuarioService.LoguearRepresentante(email,password);
+
+		return ResponseEntity.ok(logueado);
+	}
+	
+	@GetMapping("/Login")
+	@ResponseBody
+	public ResponseEntity<Boolean> LoginEstudiante (String email, String password) {
+		boolean logueado=false;
+		
+		logueado = usuarioService.LoguearEstudiante(email,password);
+
+		return ResponseEntity.ok(logueado);
+	}
 
 	@GetMapping("/ListarEstudiantes")
 	@ResponseBody
@@ -54,7 +74,7 @@ public class UsuariosController {
 		List<Estudiante> lstEstudiantes = null;
 
 		try {
-			List<Usuario> lstUsuarios = usuarioService.ListarUsuarios();
+			List<Usuario> lstUsuarios = usuarioService.ListarEstudiantes();
 
 			if (lstUsuarios != null && lstUsuarios.size() > 0) {
 

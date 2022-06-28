@@ -13,5 +13,7 @@ public interface LibroRatingRepository extends JpaRepository<RatingLibro, Intege
 	
 	public abstract List<RatingLibro> findAllByIdLibro(int idLibro);
 	
+	
+	public abstract RatingLibro findFirstByIdLibroAndIdUsuario(int idLibro,int idUsuario);
 }
 	

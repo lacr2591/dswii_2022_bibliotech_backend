@@ -77,4 +77,6 @@ public class RatingLibroController {
 		return ResponseEntity.ok(salida);
 
 	}
+
+
 }

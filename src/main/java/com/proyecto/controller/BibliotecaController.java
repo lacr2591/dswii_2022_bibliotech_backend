@@ -29,17 +29,17 @@ public class BibliotecaController {
 	
 	@PostMapping ("/RegistrarLibroBiblioteca")
 	@ResponseBody
-	public boolean registrarLibro (@RequestBody LibroBiblioteca libroBibl)
+	public boolean registrarLibro (@RequestBody LibroBiblioteca objLibro)
 	{
-		return libroService.registrarLibro(libroBibl);
+		return libroService.registrarLibro(objLibro);
 	}
 	
 	
-	@PutMapping ("/ActualizarLibroBiblioteca")
+	@PostMapping ("/ActualizarStockLibroBiblioteca")
 	@ResponseBody
-	public boolean actualizarLibro (@RequestBody LibroBiblioteca libroBibl)
+	public boolean ActualizarStockLibroBiblioteca (@RequestBody LibroBiblioteca objLibro)
 	{
-		return libroService.actualizarLibro(libroBibl);
+		return libroService.actualizarLibro(objLibro);
 	}
 	
 	@GetMapping("/ListarLibrosBiblioteca")
@@ -50,15 +50,11 @@ public class BibliotecaController {
 	
 	@GetMapping("/ListarLibrosGeneral")
 	@ResponseBody
-	public ResponseEntity<List<LibroModel>> ListarLibrosGeneral(@RequestParam   String email ) {
+	public ResponseEntity<List<LibroBiblioteca>> ListarLibrosGeneral(@RequestParam   String email ) {
 		return ResponseEntity.ok(bibliotecaService.ListarLibroGeneral(email));
 	}	
 	
-	@GetMapping("/DetalleLibro")
-	@ResponseBody
-	public ResponseEntity<List<LibroModel>> DetalleLibro(@RequestParam   int id  ) {
-		return ResponseEntity.ok(bibliotecaService.DetalleLibro(id));
-	}	
+
 	
 	
 			

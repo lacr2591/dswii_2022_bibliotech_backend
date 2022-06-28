@@ -36,6 +36,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public List<Usuario> ListarUsuarios() {
 		return usuarioRepository.findAll();
 	}
+	
+	@Override
+	public List<Usuario> ListarEstudiantes() {
+		return usuarioRepository.findAllByRolId(3);
+	}
 
 	@Override
 	public Usuario ObtenerUsuarioPorID(int id) {
@@ -52,9 +57,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		if (personaRepository.findFirstByDni(estudiante.getNumeroDocumento()) != null) {
 
 			modificaciones = -1;
-		
-			
-			
+
 		} else {
 			Personas objPersonas = new Personas();
 			objPersonas.setId(0);
@@ -153,8 +156,85 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public List<Usuario> ListarUsuariosTodos() {
-		
+
 		return usuarioRepository.findAll();
+	}
+
+	@Override
+	public int CrearRepresentante(EstudianteDetalle representante) {
+		int modificaciones = 0;
+		String dominioInstitucion = representante.getEmail().split("@")[1];
+		Roles objRoles = new Roles();
+		objRoles.setId(2);
+
+		if (personaRepository.findFirstByDni(representante.getNumeroDocumento()) != null) {
+
+			modificaciones = -1;
+
+		} else {
+			Personas objPersonas = new Personas();
+			objPersonas.setId(0);
+			objPersonas.setDni(representante.getNumeroDocumento());
+			objPersonas.setNombres(representante.getNombres());
+			objPersonas.setApellidoPaterno(representante.getApellidoPaterno());
+			objPersonas.setApellidoMaterno(representante.getApellidoMaternos());
+
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+			try {
+				objPersonas.setFecNacimiento(formato.parse(representante.getFechaNacimiento()));
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+
+			objPersonas.setGenero(representante.getGenero().charAt(0));
+			objPersonas.setTelefono(representante.getTelefono());
+
+			objPersonas = personaRepository.saveAndFlush(objPersonas);
+
+			Instituciones objInstituciones = institucionesRepository.findFirstByDominioInstitucion(dominioInstitucion);
+			if (objInstituciones != null) {
+
+				Usuario obj = new Usuario();
+				obj.setId(0);
+				obj.setEmailUsuario(representante.getEmail());
+				obj.setEstado(true);
+				obj.setFecRegistro(new Date());
+				System.out.println(representante.getId());
+				obj.setIdPersona(objPersonas.getId());
+				obj.setIdInstitucion(objInstituciones.getId());
+				obj.setPasswordUsuario(representante.getNumeroDocumento());
+				obj.setRolId(2);
+
+				modificaciones = usuarioRepository.save(obj).getId();
+
+			}
+		}
+
+		return modificaciones;
+	}
+
+	@Override
+	public boolean LoguearEstudiante(String email, String password) {
+		boolean logueado = false;
+
+		Usuario objUsuario = usuarioRepository.findFirstByEmailUsuarioAndPasswordUsuarioAndRolId(email, password, 3);
+		if (objUsuario != null) {
+			logueado = true;
+		}
+		return logueado;
+	}
+
+	@Override
+	public boolean LoguearRepresentante(String email, String password) {
+		boolean logueado = false;
+
+		Usuario objUsuario = usuarioRepository.findFirstByEmailUsuarioAndPasswordUsuarioAndRolIdNot(email, password, 3);
+		if (objUsuario != null) {
+			logueado = true;
+		}
+
+		return logueado;
 	}
 
 }
